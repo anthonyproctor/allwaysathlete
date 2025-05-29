@@ -3,50 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="All Ways Athlete offers specialized baseball training programs focused on mobility, strength, and recovery techniques to help athletes reach their peak performance.">
+    <meta name="keywords" content="baseball training, athlete mobility, sports recovery, baseball performance, injury prevention">
+    <meta name="author" content="Brady T. Knudsen">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="All Ways Athlete - Baseball Training">
+    <meta property="og:description" content="Specialized baseball training programs focused on mobility, strength, and recovery techniques.">
+    <meta property="og:image" content="awalogo.png">
+    <meta property="og:url" content="https://allwaysathlete.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="All Ways Athlete - Baseball Training">
+    <meta name="twitter:description" content="Specialized baseball training programs focused on mobility, strength, and recovery techniques.">
+    <meta name="twitter:image" content="awalogo.png">
+    
     <title>All Ways Athlete - Baseball Training</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="awalogo.png" type="image/png">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="awalogo.png" as="image">
+    <link rel="preload" href="awahero.png" as="image">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style">
+    
+    <!-- Stripe JS for payment processing -->
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <!-- Header Section -->
-    <header>
+    <header role="banner">
         <div class="container">
             <div class="logo">
-                <h1>All Ways Athlete</h1>
+                <a href="#" aria-label="All Ways Athlete Home">
+                    <img src="awalogo.png" alt="All Ways Athlete Logo" width="70" height="70" fetchpriority="high">
+                    <span class="logo-text">All Ways Athlete</span>
+                </a>
             </div>
-            <nav>
+            <nav role="navigation" aria-label="Main Navigation">
                 <ul>
                     <li><a href="#about">About</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#training">Train With Me</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
                     <li><a href="#youtube">YouTube</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-            <div class="mobile-menu-btn">
+            <button class="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </header>
+    
+    <main id="main-content">
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-background"></div>
+    <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-background" aria-hidden="true"></div>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Train Smarter. <span>Move Better.</span> Recover Faster.</h1>
+                    <h1 id="hero-heading">Train Smarter. <span>Move Better.</span> Recover Faster.</h1>
                     <p>Helping baseball athletes unlock their full potential through personalized mobility, training, and recovery programs.</p>
                     <div class="hero-cta">
-                        <a href="#training" class="cta-button">Start Training With Me</a>
+                        <a href="#" class="cta-button book-btn" data-program="Free Consultation">Book Free Consult</a>
                         <a href="#about" class="hero-secondary-cta">Learn My Methods</a>
                     </div>
                 </div>
-                <div class="hero-features">
+                <div class="hero-features" aria-label="Key benefits">
                     <div class="hero-feature">
-                        <div class="feature-icon">
+                        <div class="feature-icon" aria-hidden="true">
                             <i class="fas fa-bolt"></i>
                         </div>
                         <div class="feature-text">
@@ -55,7 +90,7 @@
                         </div>
                     </div>
                     <div class="hero-feature">
-                        <div class="feature-icon">
+                        <div class="feature-icon" aria-hidden="true">
                             <i class="fas fa-shield-alt"></i>
                         </div>
                         <div class="feature-text">
@@ -64,7 +99,7 @@
                         </div>
                     </div>
                     <div class="hero-feature">
-                        <div class="feature-icon">
+                        <div class="feature-icon" aria-hidden="true">
                             <i class="fas fa-sync-alt"></i>
                         </div>
                         <div class="feature-text">
@@ -76,8 +111,8 @@
             </div>
         </div>
         <div class="scroll-indicator">
-            <a href="#about">
-                <span class="mouse">
+            <a href="#about" aria-label="Scroll down to About section">
+                <span class="mouse" aria-hidden="true">
                     <span class="mouse-wheel"></span>
                 </span>
                 <span class="scroll-text">Scroll Down</span>
@@ -86,9 +121,9 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about">
+    <section id="about" class="about" aria-labelledby="about-heading">
         <div class="container">
-            <h2>What I Do</h2>
+            <h2 id="about-heading">What I Do</h2>
             <p class="section-intro">I help baseball athletes reach their peak performance through specialized training programs focused on mobility, strength, and recovery techniques tailored to the unique demands of baseball.</p>
             
             <div class="services">
@@ -117,17 +152,17 @@
                 </div>
             </div>
             
-            <a href="#training" class="secondary-cta">Explore My Methods</a>
+            <a href="#" class="secondary-cta book-btn" data-program="Free Consultation">Book Free Consult</a>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
+    <section id="testimonials" class="testimonials" aria-labelledby="testimonials-heading">
         <div class="container">
-            <h2>What Athletes Are Saying</h2>
+            <h2 id="testimonials-heading">What Athletes Are Saying</h2>
             
-            <div class="testimonial-slider">
-                <div class="testimonial-card active">
+            <div class="testimonial-slider" aria-roledescription="carousel" aria-label="Testimonials carousel">
+                <div class="testimonial-card active" role="group" aria-roledescription="slide" aria-label="Testimonial 1 of 3">
                     <p class="quote">"The mobility program completely transformed my pitching. I've gained velocity and my recovery time has been cut in half."</p>
                     <div class="athlete-info">
                         <h4>Mike Johnson</h4>
@@ -135,7 +170,7 @@
                     </div>
                 </div>
                 
-                <div class="testimonial-card">
+                <div class="testimonial-card" role="group" aria-roledescription="slide" aria-label="Testimonial 2 of 3">
                     <p class="quote">"After working with All Ways Athlete, my batting average improved significantly. The shoulder mobility work made a huge difference in my swing."</p>
                     <div class="athlete-info">
                         <h4>Chris Rodriguez</h4>
@@ -143,7 +178,7 @@
                     </div>
                 </div>
                 
-                <div class="testimonial-card">
+                <div class="testimonial-card" role="group" aria-roledescription="slide" aria-label="Testimonial 3 of 3">
                     <p class="quote">"The recovery techniques I learned have been game-changers. I'm able to maintain peak performance throughout the entire season now."</p>
                     <div class="athlete-info">
                         <h4>David Thompson</h4>
@@ -153,47 +188,52 @@
             </div>
             
             <div class="slider-controls">
-                <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
-                <div class="slider-dots">
-                    <span class="dot active" data-index="0"></span>
-                    <span class="dot" data-index="1"></span>
-                    <span class="dot" data-index="2"></span>
+                <button class="prev-btn" aria-label="Previous testimonial"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                <div class="slider-dots" role="tablist">
+                    <button class="dot active" data-index="0" role="tab" aria-selected="true" aria-label="Show testimonial 1"></button>
+                    <button class="dot" data-index="1" role="tab" aria-selected="false" aria-label="Show testimonial 2"></button>
+                    <button class="dot" data-index="2" role="tab" aria-selected="false" aria-label="Show testimonial 3"></button>
                 </div>
-                <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+                <button class="next-btn" aria-label="Next testimonial"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
             </div>
         </div>
     </section>
 
-    <!-- Training Options Section -->
-    <section id="training" class="training">
+    <!-- Pricing Section -->
+    <section id="pricing" class="training" aria-labelledby="pricing-heading">
         <div class="container">
-            <h2>Train With Me</h2>
+            <h2 id="pricing-heading">Training Programs</h2>
+            <p class="section-intro">Choose from a variety of specialized training programs designed to help you reach your full potential as a baseball athlete.</p>
             
             <div class="training-options">
                 <div class="training-card">
                     <div class="card-icon">
-                        <i class="fas fa-running"></i>
+                        <i class="fas fa-dumbbell"></i>
                     </div>
                     <h3>Mobility Programs</h3>
                     <ul>
-                        <li>Shoulder Mobility</li>
-                        <li>Hip & Lower Body</li>
-                        <li>Full Body Program</li>
+                        <li>Shoulder Mobility - 4 weeks</li>
+                        <li>Hip & Lower Body - 4 weeks</li>
+                        <li>Full Body Program - 8 weeks</li>
+                        <li>Personalized exercise plans</li>
+                        <li>Video tutorials & feedback</li>
                     </ul>
-                    <a href="#" class="card-cta">Learn More</a>
+                    <a href="#" class="card-cta book-btn" data-program="Mobility Programs">Book Now</a>
                 </div>
                 
                 <div class="training-card">
                     <div class="card-icon">
-                        <i class="fas fa-heartbeat"></i>
+                        <i class="fas fa-sync-alt"></i>
                     </div>
                     <h3>Recovery Flows</h3>
                     <ul>
-                        <li>Post-Game Recovery</li>
-                        <li>In-Season Maintenance</li>
-                        <li>Injury Prevention</li>
+                        <li>Post-Game Recovery - 4 weeks</li>
+                        <li>In-Season Maintenance - 8 weeks</li>
+                        <li>Injury Prevention - 12 weeks</li>
+                        <li>Recovery techniques & protocols</li>
+                        <li>Personalized guidance</li>
                     </ul>
-                    <a href="#" class="card-cta">Watch Now</a>
+                    <a href="#" class="card-cta book-btn" data-program="Recovery Flows">Book Now</a>
                 </div>
                 
                 <div class="training-card">
@@ -202,20 +242,61 @@
                     </div>
                     <h3>Custom Coaching</h3>
                     <ul>
-                        <li>1-on-1 Training</li>
-                        <li>Personalized Programs</li>
-                        <li>Progress Tracking</li>
+                        <li>One-on-one training sessions</li>
+                        <li>Personalized program design</li>
+                        <li>Performance assessment</li>
+                        <li>Progress tracking</li>
+                        <li>Ongoing support & adjustments</li>
                     </ul>
-                    <a href="#" class="card-cta">Book Free Consult</a>
+                    <a href="#" class="card-cta book-btn" data-program="Custom Coaching">Book Now</a>
+                </div>
+            </div>
+            
+            <div class="pricing-section">
+                <h3>Pricing Options</h3>
+                <p class="trainer-name">With Brady Knudsen, CSCS, FMS</p>
+                
+                <div class="pricing-options">
+                    <div class="pricing-card">
+                        <h4>Online Training Programs</h4>
+                        <p>Remote coaching with personalized programs delivered through our training app.</p>
+                        <ul class="price-list">
+                            <li>4-Week Program: <span class="price">$500</span></li>
+                            <li>8-Week Program: <span class="price">$920</span> <span class="discounted">(Save $80)</span></li>
+                            <li>12-Week Program: <span class="price">$1,260</span> <span class="discounted">(Save $240)</span></li>
+                        </ul>
+                        <a href="#" class="card-cta book-btn" data-program="Online Training Program">Select Package</a>
+                    </div>
+                    
+                    <div class="pricing-card">
+                        <h4>In-Person Performance Training</h4>
+                        <p>Face-to-face training sessions at our Denver facility.</p>
+                        <ul class="price-list">
+                            <li>Single Session (90min): <span class="price">$110</span></li>
+                            <li>10 Sessions (90min): <span class="price">$990</span> <span class="discounted">(Save $110)</span></li>
+                            <li>20 Sessions (60min): <span class="price">$1,680</span> <span class="discounted">(Save $220)</span></li>
+                        </ul>
+                        <a href="#" class="card-cta book-btn" data-program="In-Person Performance Training">Select Package</a>
+                    </div>
+                </div>
+                
+                <div class="special-offers">
+                    <h4>Special Offers</h4>
+                    <ul>
+                        <li><strong>Hybrid Training:</strong> Combine online programming with in-person sessions for the best results. Save 10% on combined packages.</li>
+                        <li><strong>Team Discounts:</strong> Special rates available for teams of 5 or more athletes. Contact for details.</li>
+                        <li><strong>Free Consultation:</strong> Not sure which program is right for you? Book a free 30-minute consultation to discuss your goals.</li>
+                    </ul>
+                    <a href="#" class="secondary-cta book-btn" data-program="Free Consultation">Book Free Consult</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- YouTube Section -->
-    <section id="youtube" class="youtube">
+    <section id="youtube" class="youtube" aria-labelledby="youtube-heading">
         <div class="container">
-            <h2>Video Library & Education</h2>
+            <h2 id="youtube-heading">Video Library & Education</h2>
             
             <div class="video-container">
                 <div class="video">
@@ -239,12 +320,78 @@
         </div>
     </section>
 
+    <!-- Contact Section -->
+    <section id="contact" class="contact" aria-labelledby="contact-heading">
+        <div class="container">
+            <h2 id="contact-heading">Get In Touch</h2>
+            <p class="section-intro">Have questions about training programs or want to schedule a consultation? Fill out the form below and I'll get back to you as soon as possible.</p>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@allwaysathlete.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>(555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Denver, Colorado</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <h4>Follow Me</h4>
+                        <div class="social-icons">
+                            <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="cta-button">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <h3>All Ways Athlete</h3>
+                    <img src="awalogo.png" alt="All Ways Athlete Logo" width="70" height="70" loading="lazy">
                     <p>Train Smarter. Move Better. Recover Faster.</p>
                 </div>
                 
@@ -275,6 +422,164 @@
             </div>
         </div>
     </footer>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Book Your Training</h2>
+            <div id="bookingSteps">
+                <!-- Step 1: Program Selection -->
+                <div class="booking-step active" id="step1">
+                    <h3>Step 1: Confirm Your Program</h3>
+                    <div class="form-group">
+                        <label for="program">Selected Program</label>
+                        <input type="text" id="program" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="package">Select Package</label>
+                        <select id="package">
+                            <option value="">-- Select a package --</option>
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                    </div>
+                    <button class="cta-button next-step" data-next="step2">Continue</button>
+                </div>
+                
+                <!-- Step 2: Personal Information -->
+                <div class="booking-step" id="step2">
+                    <h3>Step 2: Your Information</h3>
+                    <div class="form-group">
+                        <label for="bookingName">Full Name</label>
+                        <input type="text" id="bookingName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingEmail">Email</label>
+                        <input type="email" id="bookingEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingPhone">Phone</label>
+                        <input type="tel" id="bookingPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingDate">Preferred Start Date</label>
+                        <input type="date" id="bookingDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingNotes">Special Requests or Notes</label>
+                        <textarea id="bookingNotes" rows="3"></textarea>
+                    </div>
+                    <div class="button-group">
+                        <button class="secondary-cta prev-step" data-prev="step1">Back</button>
+                        <button class="cta-button next-step" data-next="step3">Continue to Payment</button>
+                    </div>
+                </div>
+                
+                <!-- Step 3: Payment Information -->
+                <div class="booking-step" id="step3">
+                    <h3>Step 3: Payment Information</h3>
+                    <div class="payment-summary">
+                        <h4>Order Summary</h4>
+                        <div class="summary-item">
+                            <span>Program:</span>
+                            <span id="summaryProgram"></span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Package:</span>
+                            <span id="summaryPackage"></span>
+                        </div>
+                        <div class="summary-item total">
+                            <span>Total:</span>
+                            <span id="summaryTotal"></span>
+                        </div>
+                    </div>
+                    <div class="payment-form">
+                        <div class="form-group">
+                            <label>Select Payment Method</label>
+                            <div class="payment-methods">
+                                <div class="payment-method active" data-method="card">
+                                    <i class="fas fa-credit-card"></i>
+                                    <span>Credit Card</span>
+                                </div>
+                                <div class="payment-method" data-method="paypal">
+                                    <i class="fab fa-paypal"></i>
+                                    <span>PayPal</span>
+                                </div>
+                                <div class="payment-method" data-method="venmo">
+                                    <i class="fab fa-vimeo-v"></i>
+                                    <span>Venmo</span>
+                                </div>
+                                <div class="payment-method" data-method="googlepay">
+                                    <i class="fab fa-google-pay"></i>
+                                    <span>Google Pay</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Credit Card Payment (Stripe) -->
+                        <div class="payment-method-form" id="card-payment-form">
+                            <div class="form-group">
+                                <label for="cardName">Name on Card</label>
+                                <input type="text" id="cardName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="card-element">Credit or Debit Card</label>
+                                <div id="card-element" class="stripe-card-element">
+                                    <!-- Stripe Elements will create input elements here -->
+                                </div>
+                                <div id="card-errors" role="alert" class="stripe-error"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- PayPal Payment -->
+                        <div class="payment-method-form hidden" id="paypal-payment-form">
+                            <div class="paypal-button-container">
+                                <div class="paypal-placeholder">
+                                    <i class="fab fa-paypal"></i>
+                                    <p>You'll be redirected to PayPal to complete your payment securely.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Venmo Payment -->
+                        <div class="payment-method-form hidden" id="venmo-payment-form">
+                            <div class="venmo-placeholder">
+                                <i class="fab fa-vimeo-v"></i>
+                                <p>You'll be redirected to Venmo to complete your payment securely.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Google Pay Payment -->
+                        <div class="payment-method-form hidden" id="googlepay-payment-form">
+                            <div class="googlepay-placeholder">
+                                <i class="fab fa-google-pay"></i>
+                                <p>You'll be redirected to Google Pay to complete your payment securely.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-note">
+                            <p><i class="fas fa-lock"></i> Your payment information is securely processed. We never store your payment details.</p>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="secondary-cta prev-step" data-prev="step2">Back</button>
+                        <button class="cta-button" id="completeBooking">Complete Booking</button>
+                    </div>
+                </div>
+                
+                <!-- Step 4: Confirmation -->
+                <div class="booking-step" id="step4">
+                    <div class="success-message">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Booking Confirmed!</h3>
+                        <p>Thank you for booking with All Ways Athlete. A confirmation email has been sent to <span id="confirmationEmail"></span>.</p>
+                        <p>We're excited to start your training journey!</p>
+                        <button class="cta-button close-modal-btn">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

@@ -361,7 +361,7 @@
                 </div>
                 
                 <div class="contact-form">
-                    <form id="contactForm">
+                    <form id="contactForm" action="https://formspree.io/f/myzjpwkg" method="POST">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" required>
@@ -378,6 +378,8 @@
                             <label for="message">Message</label>
                             <textarea id="message" name="message" rows="5" required></textarea>
                         </div>
+                        <input type="hidden" name="_subject" value="New message from All Ways Athlete website">
+                        <input type="text" name="_gotcha" style="display:none">
                         <button type="submit" class="cta-button">Send Message</button>
                     </form>
                 </div>

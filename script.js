@@ -813,14 +813,63 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Contact Form Handling
+    // Contact Form Handling with Formspree
     const contactForm = document.getElementById('contactForm');
     
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Display form submission status
+        const displayFormStatus = (success, name) => {
+            // Create success message element
+            const statusMessage = document.createElement('div');
+            statusMessage.className = success ? 'success-message' : 'error-message';
             
-            // Get form values
+            if (success) {
+                statusMessage.innerHTML = `
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Message Sent!</h3>
+                    <p>Thank you for reaching out, ${name}. I'll get back to you soon.</p>
+                `;
+            } else {
+                statusMessage.innerHTML = `
+                    <i class="fas fa-exclamation-circle"></i>
+                    <h3>Message Failed to Send</h3>
+                    <p>There was a problem sending your message. Please try again or contact us directly at info@allwaysathlete.com.</p>
+                    <button class="cta-button" id="tryAgainBtn">Try Again</button>
+                `;
+            }
+            
+            // Replace form with status message
+            contactForm.style.opacity = '0';
+            
+            setTimeout(() => {
+                contactForm.parentNode.replaceChild(statusMessage, contactForm);
+                statusMessage.style.opacity = '0';
+                
+                setTimeout(() => {
+                    statusMessage.style.opacity = '1';
+                    
+                    // Add event listener to "Try Again" button if it exists
+                    const tryAgainBtn = document.getElementById('tryAgainBtn');
+                    if (tryAgainBtn) {
+                        tryAgainBtn.addEventListener('click', function() {
+                            // Replace status message with the form again
+                            statusMessage.parentNode.replaceChild(contactForm, statusMessage);
+                            contactForm.style.opacity = '0';
+                            
+                            setTimeout(() => {
+                                contactForm.style.opacity = '1';
+                            }, 50);
+                        });
+                    }
+                }, 50);
+            }, 300);
+        };
+        
+        contactForm.addEventListener('submit', function(e) {
+            // Formspree will handle the form submission, so we don't need to prevent default
+            // However, we'll add some client-side validation and feedback
+            
+            // Get form values for validation
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const subject = document.getElementById('subject').value;
@@ -828,33 +877,68 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Simple validation
             if (!name || !email || !subject || !message) {
+                e.preventDefault();
                 alert('Please fill in all fields');
                 return;
             }
             
-            // In a real implementation, you would send this data to a server
-            // For this demo, we'll just show a success message
+            // Add form submission event listener for success/error handling
+            const form = e.target;
             
-            // Create success message element
-            const successMessage = document.createElement('div');
-            successMessage.className = 'success-message';
-            successMessage.innerHTML = `
-                <i class="fas fa-check-circle"></i>
-                <h3>Message Sent!</h3>
-                <p>Thank you for reaching out, ${name}. I'll get back to you soon.</p>
-            `;
+            // Store the original action to restore it later if needed
+            const originalAction = form.action;
             
-            // Replace form with success message
-            contactForm.style.opacity = '0';
+            // Check if we're in a test environment
+            if (originalAction.includes('test-form-id')) {
+                // This is just for development/testing - prevent actual submission
+                e.preventDefault();
+                console.log('Test mode - this would submit to Formspree in production');
+                displayFormStatus(true, name);
+                return;
+            }
             
-            setTimeout(() => {
-                contactForm.parentNode.replaceChild(successMessage, contactForm);
-                successMessage.style.opacity = '0';
+            // For actual Formspree submission
+            form.addEventListener('submit', function(e) {
+                // This is handled by Formspree, so we don't prevent default
                 
-                setTimeout(() => {
-                    successMessage.style.opacity = '1';
-                }, 50);
-            }, 300);
+                // Add a loading state
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                
+                // We'll use the Formspree AJAX API
+                fetch(form.action, {
+                    method: form.method,
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Network response was not ok.');
+                })
+                .then(data => {
+                    // Success - show success message
+                    displayFormStatus(true, name);
+                })
+                .catch(error => {
+                    // Error - show error message
+                    console.error('Error:', error);
+                    displayFormStatus(false, name);
+                })
+                .finally(() => {
+                    // Reset button state
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                });
+                
+                // Prevent the default form submission since we're handling it with fetch
+                e.preventDefault();
+            });
         });
     }
 });

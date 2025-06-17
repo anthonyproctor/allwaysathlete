@@ -87,8 +87,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Program packages and pricing
     const programPackages = {
-        'Free Consultation': [
-            { name: 'Initial Consultation (60 min)', price: 0 }
+        'Initial Consultation': [
+            { name: 'Initial Consultation (60 min)', price: 75 }
         ],
         'Mobility Programs': [
             { name: 'Shoulder Mobility - 4 weeks', price: 500 },
@@ -231,10 +231,26 @@ document.addEventListener('DOMContentLoaded', function() {
             // Only proceed if validation passes
             if (isValid) {
                 // Process payment
-                if (programInput.value === 'Free Consultation') {
-                    // For free consultations, skip payment processing
-                    console.log('Free consultation booked - no payment required');
-                    proceedToConfirmation();
+                if (programInput.value === 'Initial Consultation') {
+                    // Process payment for initial consultation
+                    console.log('Processing payment for initial consultation');
+                    // Process payment based on selected payment method
+                    switch(currentPaymentMethod) {
+                        case 'card':
+                            processStripePayment();
+                            break;
+                        case 'paypal':
+                            processPayPalPayment();
+                            break;
+                        case 'venmo':
+                            processVenmoPayment();
+                            break;
+                        case 'googlepay':
+                            processGooglePayPayment();
+                            break;
+                        default:
+                            processStripePayment();
+                    }
                 } else {
                     // Process payment based on selected payment method
                     console.log(`Processing payment with ${currentPaymentMethod}...`);
@@ -427,9 +443,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 
             case 'step3':
                 // Validate payment information based on selected payment method
-                if (programInput.value === 'Free Consultation') {
-                    // Skip payment validation for free consultations
-                    isValid = true;
+                if (programInput.value === 'Initial Consultation') {
+                    // Validate payment information for initial consultation
+                    switch(currentPaymentMethod) {
+                        case 'card':
+                            // Validate card payment
+                            const cardName = document.getElementById('cardName');
+                            if (!cardName.value.trim()) {
+                                displayValidationError(cardName, 'Please enter the name on your card');
+                                isValid = false;
+                            }
+                            break;
+                        case 'paypal':
+                        case 'venmo':
+                        case 'googlepay':
+                            // These payment methods will redirect to their respective platforms
+                            // No additional validation needed here
+                            isValid = true;
+                            break;
+                        default:
+                            isValid = true;
+                    }
                 } else {
                     // Validate based on the selected payment method
                     switch(currentPaymentMethod) {
